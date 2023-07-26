@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -28,6 +28,9 @@ export default function RootLayout({
           </li>
           <li>
             <Link href="/calculator">Calculator</Link>
+          </li>
+          <li>
+            <Link href="/search">Cari User</Link>
           </li>
           <li
             style={{
