@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import useSWR from "swr";
+import ListItemSearch from "../components/ListItemSearch";
 
 interface Props {
   query: string;
@@ -12,22 +13,20 @@ export default function SectionResult({ query }: Props) {
     "https://api.github.com/search/users?q=" + query,
     fetcher
   );
-  var loading = !data && !error;
+  let loading = !data && !error;
   return (
     <div style={{ marginTop: "20px" }}>
-      <p>Hasil Pencarian : {query}</p>
+      <p className="text-lg font-bold">Hasil Pencarian : {query}</p>
       {loading && "Tunggu...."}
       {data &&
         data.items.map((user: any, index: number) => {
           return (
-            <ul key={index}>
-              <li>
-                <Link href={`/search/${user.login}`}>{user.login}</Link>
-              </li>
-              <li>
-                <Link href={user.repos_url}>Repository</Link>
-              </li>
-            </ul>
+            <ListItemSearch
+              key={index}
+              img={user.avatar_url}
+              name={user.login}
+              url={user.repos_url}
+            />
           );
         })}
     </div>

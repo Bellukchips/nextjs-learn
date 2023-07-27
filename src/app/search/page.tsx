@@ -10,12 +10,19 @@ export default function SearchPage() {
     setQuery(query);
   };
   return (
-    <div>
-      <form onSubmit={onSearch}>
-        <input type="text" placeholder="Cari user github" />
-        <button>Cari</button><br />
-        {query && <SectionResult query={query} />}
+    <div className="">
+      <form onSubmit={onSearch} className="w-full flex space-x-3 mt-20">
+        <input
+          type="text"
+          placeholder="Cari user github"
+          className="bg-slate-300 w-full  px-3"
+        />
+        <button className="bg-blue-500 text-white py-2 px-3 rounded-md">
+          Cari
+        </button>
       </form>
+      <br />
+      {query && <SectionResult query={query} />}
     </div>
   );
 }

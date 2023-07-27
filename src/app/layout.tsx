@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import "../styles/globals.css";
 
 export const metadata = {
   title: "Next.js",
@@ -16,33 +17,23 @@ export default function RootLayout({
   const onClick = (url: string) => {
     router.push(url);
   };
+
+  const menuItem = (url: string, title: string) => {
+    return (
+      <li className="bg-black text-white py-2 px-3 rounded-lg">
+        <Link href={url}>{title}</Link>
+      </li>
+    );
+  };
   return (
     <html lang="en">
-      <body>
-        <ul>
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link href="/calculator">Calculator</Link>
-          </li>
-          <li>
-            <Link href="/search">Cari User</Link>
-          </li>
-          <li
-            style={{
-              backgroundColor: "#000",
-              color: "#fff",
-              padding: "10px",
-              cursor: "pointer",
-            }}
-            onClick={() => onClick("/settings")}
-          >
-            Settings
-          </li>
+      <body className="container mx-auto py-[10px]">
+        <ul className="inline-flex space-x-3 w-full">
+          {menuItem("/", "Home")}
+          {menuItem("/dashboard", "Dashboard")}
+          {menuItem("/settings", "Settings")}
+          {menuItem("/search", "Search")}
+          {menuItem("/calculator", "Calculator")}
         </ul>
         {children}
       </body>
